@@ -4,7 +4,7 @@ interface ConceptCardProps {
   concept: Concept;
 }
 
-const conceptIcons: Record<string, () => JSX.Element> = {
+const conceptIcons = {
   psyche: () => (
     <svg viewBox="0 0 100 100" className="w-20 h-20">
       <circle
@@ -154,7 +154,7 @@ const conceptColors: Record<
 };
 
 export default function ConceptCard({ concept }: ConceptCardProps) {
-  const Icon = conceptIcons[concept.slug];
+  const Icon = conceptIcons[concept.slug as keyof typeof conceptIcons];
   const colors = conceptColors[concept.slug];
 
   return (

@@ -5,19 +5,17 @@ import Navigation from "@/components/concepts/Navigation";
 import RelatedConcepts from "@/components/concepts/RelatedConcepts";
 import Footer from "@/components/common/Footer";
 
-interface ConceptPageProps {
-  params: {
-    slug: string;
-  };
-}
-
 export function generateStaticParams() {
   return concepts.map((concept) => ({
     slug: concept.slug,
   }));
 }
 
-export default async function ConceptPage({ params }: ConceptPageProps) {
+export default async function ConceptPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const concept = concepts.find((c) => c.slug === slug);
 
